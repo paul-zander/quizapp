@@ -1,0 +1,120 @@
+body {
+    margin: 0;
+    background: rgb(73,1,79);
+    background: linear-gradient(133deg, #4a0151 0%, #790969 60%);
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+h1 {
+    margin: 0 0 80px 0;
+    font-size: 50px;
+}
+
+.question {
+    margin-bottom: 40px;
+    font-size: 24px;
+}
+
+.current-question {
+    padding: 8px;
+    color:#a00f8a;
+    font-size: 20px;
+}
+.card {
+    position: relative;
+    padding: 40px;
+    height: 60vh;
+    width: 60vh;
+    background-color: #4c0052;
+    border-radius: 16px;
+    box-shadow: rgba(206, 206, 206, 0.2) 0px 7px 29px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.answer-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+}
+
+.single-answer-options{
+    padding: 8px;
+    color: #4c0052;
+    background-color: white;
+    border-radius: 8px;
+    width: 90%;
+    text-align: center;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+/* .single-answer-options:hover {
+    background-color: #e9e9e9;
+    color: #4c0052;
+} */
+
+.next-question-btn {
+    position: absolute;
+    right: 32px;
+    bottom: 32px;
+    border-radius: 8px;
+    padding: 16px;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.next-question-btn:hover {
+    background-color: #790969;
+    color: white;
+}
+
+.reset-game-btn {
+    margin-top: 40px;
+    border-radius: 8px;
+    padding: 16px;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.reset-game-btn:hover {
+    background-color: #790969;
+    color: white;
+}
+
+.right-answer {
+    background-color: green;
+    color: white;
+}
+
+.wrong-answer {
+    background-color: red;
+    color: white;
+}
+
+.d-none {
+    display: none;
+}
+
+.endscreen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    text-align: center;
+}

@@ -43,7 +43,8 @@ let questions = [
 
 let currentQuestion = 0;
 let rightAnswers = 0;
-
+let audioSuccess = new Audio('sounds/success.mp3');
+let audioFail = new Audio('sounds/fail.mp3'); 
 
 function init() {
   document.getElementById("current-question").innerHTML = `Frage ${currentQuestion+1} von ${questions.length}`;
@@ -72,10 +73,12 @@ function checkAnswer(answer) {
   let rightAnswer = questions[currentQuestion]['rightAnswer'];
   if (selectedAnswer === rightAnswer) {
     document.getElementById(answer).classList.add('right-answer');
+    audioSuccess.play();
     countRightAnswers();
   } else {
     document.getElementById(`answer${rightAnswer}`).classList.add('right-answer');
     document.getElementById(answer).classList.add('wrong-answer');
+    audioFail.play();
   }
   document.getElementById('next-question-btn').disabled = false;
   preventClicking();
@@ -86,28 +89,28 @@ function renderCurrentQuestion() {
   currentQuestion.innerHTML = `${questions["currentQuestion"]}`;
 }
 
+function updateProgressBar() {
+  let progress = currentQuestion / questions.length * 100;
+  document.getElementById('progress-fill').style.width = `${progress}%`;
+  document.getElementById('progress-text').innerHTML = `${progress}%`;
+}
+
 function nextQuestion() {
   currentQuestion++;
   document.getElementById('next-question-btn').disabled = true; 
-  (currentQuestion < questions.length) ? init() : endGame();
+  currentQuestion < questions.length ? init() : endGame();
+  updateProgressBar();
 }
 
-function hideGame() {
-  document.getElementById('current-question').classList.add('d-none');
-  document.getElementById('question').classList.add('d-none');
-  document.getElementById('answer-options').classList.add('d-none');
-  document.getElementById('next-question-btn').classList.add('d-none');
-}
-
-function showGame() {
-  document.getElementById('current-question').classList.remove('d-none');
-  document.getElementById('question').classList.remove('d-none');
-  document.getElementById('answer-options').classList.remove('d-none');
-  document.getElementById('next-question-btn').classList.remove('d-none');
+function toggleGame() {
+  document.getElementById('current-question').classList.toggle('d-none');
+  document.getElementById('question').classList.toggle('d-none');
+  document.getElementById('answer-options').classList.toggle('d-none');
+  document.getElementById('next-question-btn').classList.toggle('d-none');
 }
 
 function endGame() {
-  hideGame();
+  toggleGame();
   renderEndscreen();
 }
 
@@ -115,17 +118,18 @@ function resetGame() {
   currentQuestion = 0;
   rightAnswers = 0;
   document.getElementById('endscreen').innerHTML = '';
-  showGame();
+  toggleGame();
   init();
+  updateProgressBar();
 }
 
 function renderEndscreen() {
   document.getElementById('endscreen').innerHTML = /*html*/ `
-    Du hast ${rightAnswers} von ${questions.length} richtig beantwortet!
+  <div class="smiley">🥳</div>
+    Du hast ${rightAnswers} von ${questions.length} Fragen richtig beantwortet!
     <button class="reset-game-btn" onclick="resetGame()">Erneut spielen</button>
   `
 }
-
 
 
 

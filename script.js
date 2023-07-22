@@ -1,6 +1,6 @@
 let questions = [
   {
-    "question": "Wert hat HTML erfunden?",
+    "question": "Wer hat HTML erfunden?",
     "answer1": "Robbie Williams",
     "answer2": "Lady Gaga",
     "answer3": "Tim Berners-Lee",
